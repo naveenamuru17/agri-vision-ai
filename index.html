@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgriVision AI - Smart Agriculture</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f8f4;
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background:#166534;
+    color:white;
+    padding:15px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+button{
+    border:none;
+    padding:11px 17px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.green-btn{
+    background:#16a34a;
+    color:white;
+}
+
+.dark-btn{
+    background:#222;
+    color:white;
+}
+
+/* HERO */
+.hero{
+    min-height:430px;
+    padding:80px 8%;
+    background:linear-gradient(135deg,#dcfce7,#f0fdf4);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.hero-text{
+    max-width:650px;
+}
+
+.hero h1{
+    font-size:45px;
+    color:#14532d;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.hero-box{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+    text-align:center;
+    min-width:260px;
+}
+
+.hero-box .emoji{
+    font-size:90px;
+}
+
+/* SECTIONS */
+section{
+    padding:60px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    color:#166534;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#666;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.card h3{
+    color:#166534;
+    margin:10px 0;
+}
+
+.icon{
+    font-size:40px;
+}
+
+/* DASHBOARD */
+.dashboard{
+    background:#ecfdf5;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.stat{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.stat h2{
+    color:#15803d;
+    font-size:32px;
+}
+
+/* FORMS */
+.form-box{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+input,select,textarea{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    width:100%;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* RESULT */
+.result{
+    margin-top:20px;
+    padding:20px;
+    background:#f0fdf4;
+    border-left:5px solid #16a34a;
+    border-radius:8px;
+    display:none;
+}
+
+.result h3{
+    color:#166534;
+    margin-bottom:10px;
+}
+
+/* SCORE */
+.score-box{
+    text-align:center;
+    background:white;
+    max-width:500px;
+    margin:auto;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.score{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    margin:20px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#dcfce7;
+    border:12px solid #22c55e;
+}
+
+.score span{
+    font-size:42px;
+    font-weight:bold;
+    color:#166534;
+}
+
+/* CHATBOT */
+.chat-box{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.chat-header{
+    background:#166534;
+    color:white;
+    padding:18px;
+    font-weight:bold;
+}
+
+.chat-messages{
+    height:350px;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.message{
+    margin:10px 0;
+    padding:12px;
+    border-radius:10px;
+    max-width:80%;
+}
+
+.bot{
+    background:#dcfce7;
+}
+
+.user{
+    background:#e5e7eb;
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+    padding:15px;
+    gap:10px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    padding:13px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#166534;
+    color:white;
+}
+
+/* ALERT */
+.alert{
+    padding:15px;
+    margin:10px 0;
+    border-radius:8px;
+    background:#fef3c7;
+    border-left:5px solid #f59e0b;
+}
+
+/* FOOTER */
+footer{
+    background:#14532d;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+/* DARK MODE */
+.dark{
+    background:#111827;
+    color:white;
+}
+
+.dark .card,
+.dark .form-box,
+.dark .stat,
+.dark .score-box,
+.dark .chat-box,
+.dark table{
+    background:#1f2937;
+    color:white;
+}
+
+.dark input,
+.dark select,
+.dark textarea{
+    background:#374151;
+    color:white;
+    border-color:#555;
+}
+
+.dark .hero{
+    background:#1f2937;
+}
+
+.dark .hero h1,
+.dark .section-title h2{
+    color:#86efac;
+}
+
+.dark .dashboard{
+    background:#111827;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+
+    header{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    nav{
+        justify-content:center;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:50px 5%;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+<div class="logo">
+🌱 AgriVision AI
+</div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#crop">Crop AI</a>
+<a href="#disease">Disease</a>
+<a href="#irrigation">Irrigation</a>
+<a href="#weather">Weather</a>
+<a href="#yield">Yield</a>
+<a href="#market">Market</a>
+<a href="#chatbot">AI Assistant</a>
+</nav>
+
+<button class="dark-btn" onclick="toggleDarkMode()">🌙</button>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+<div class="hero-text">
+
+<h1>🌱 AgriVision AI</h1>
+
+<p>
+Smart Agriculture & Crop Decision Support System
+</p>
+
+<p>
+Use intelligent recommendations for crop selection,
+irrigation, disease detection, yield prediction and
+farm monitoring.
+</p>
+
+<a href="#crop">
+<button class="green-btn">Start Smart Farming</button>
+</a>
+
+</div>
+
+<div class="hero-box">
+
+<div class="emoji">👨‍🌾🌾</div>
+
+<h2>Smart Farming</h2>
+
+<p>
+AI • Data • Agriculture
+</p>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section>
+
+<div class="section-title">
+
+<h2>🚜 Smart Agriculture Features</h2>
+
+<p>Everything needed for intelligent farm management.</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🌱</div>
+<h3>Crop Recommendation</h3>
+<p>Find a suitable crop based on soil and environmental conditions.</p>
+</div>
+
+<div class="card">
+<div class="icon">📷</div>
+<h3>Disease Detection</h3>
+<p>Upload a leaf image and analyze possible crop disease.</p>
+</div>
+
+<div class="card">
+<div class="icon">💧</div>
+<h3>Smart Irrigation</h3>
+<p>Get irrigation recommendations based on soil moisture and weather.</p>
+</div>
+
+<div class="card">
+<div class="icon">📈</div>
+<h3>Yield Prediction</h3>
+<p>Estimate expected agricultural production.</p>
+</div>
+
+<div class="card">
+<div class="icon">🌦️</div>
+<h3>Weather Monitoring</h3>
+<p>Monitor temperature, humidity and rainfall conditions.</p>
+</div>
+
+<div class="card">
+<div class="icon">🤖</div>
+<h3>AI Farmer Assistant</h3>
+<p>Ask farming-related questions using the assistant.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section class="dashboard" id="dashboard">
+
+<div class="section-title">
+
+<h2>📊 Farmer Dashboard</h2>
+
+<p>Overview of your farm.</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2 id="farmScore">87</h2>
+<p>Farm Score</p>
+</div>
+
+<div class="stat">
+<h2>72%</h2>
+<p>Soil Health</p>
+</div>
+
+<div class="stat">
+<h2>78%</h2>
+<p>Water Efficiency</p>
+</div>
+
+<div class="stat">
+<h2>91%</h2>
+<p>Crop Health</p>
+</div>
+
+</div>
+
+<div class="score-box">
+
+<h2>🏆 Farm Intelligence Score</h2>
+
+<div class="score">
+<span id="scoreCircle">87</span>
+</div>
+
+<p>
+Your farm is performing well.
+Follow the recommendations to improve productivity.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- FARM REGISTRATION -->
+<section>
+
+<div class="section-title">
+
+<h2>👨‍🌾 Farmer Registration</h2>
+
+<p>Enter your farm details.</p>
+
+</div>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Farmer Name</label>
+
+<input type="text" id="farmerName"
+placeholder="Enter your name">
+
+</div>
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input type="tel"
+placeholder="Enter mobile number">
+
+</div>
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input type="text"
+id="location"
+placeholder="Village / City">
+
+</div>
+
+<div class="form-group">
+
+<label>Farm Area (acres)</label>
+
+<input type="number"
+id="farmArea"
+placeholder="Example: 2">
+
+</div>
+
+<div class="form-group full">
+
+<label>Soil Type</label>
+
+<select id="soilType">
+
+<option value="">Select Soil</option>
+<option>Clay</option>
+<option>Sandy</option>
+<option>Loamy</option>
+<option>Black Soil</option>
+<option>Red Soil</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="green-btn"
+onclick="saveFarmer()">
+Save Farmer Details
+</button>
+
+<div class="result" id="farmerResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- CROP RECOMMENDATION -->
+<section id="crop">
+
+<div class="section-title">
+
+<h2>🌱 AI Crop Recommendation</h2>
+
+<p>Enter soil and environmental conditions.</p>
+
+</div>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Nitrogen (N)</label>
+
+<input type="number" id="nitrogen"
+placeholder="Example: 90">
+
+</div>
+
+<div class="form-group">
+
+<label>Phosphorus (P)</label>
+
+<input type="number" id="phosphorus"
+placeholder="Example: 40">
+
+</div>
+
+<div class="form-group">
+
+<label>Potassium (K)</label>
+
+<input type="number" id="potassium"
+placeholder="Example: 40">
+
+</div>
+
+<div class="form-group">
+
+<label>Temperature °C</label>
+
+<input type="number" id="temperature"
+placeholder="Example: 28">
+
+</div>
+
+<div class="form-group">
+
+<label>Humidity %</label>
+
+<input type="number" id="humidity"
+placeholder="Example: 70">
+
+</div>
+
+<div class="form-group">
+
+<label>Rainfall mm</label>
+
+<input type="number" id="rainfall"
+placeholder="Example: 150">
+
+</div>
+
+<div class="form-group full">
+
+<label>Soil pH</label>
+
+<input type="number" id="ph"
+step="0.1"
+placeholder="Example: 6.5">
+
+</div>
+
+</div>
+
+<br>
+
+<button class="green-btn"
+onclick="recommendCrop()">
+
+🤖 Recommend Crop
+
+</button>
+
+<div class="result" id="cropResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- DISEASE -->
+<section id="disease">
+
+<div class="section-title">
+
+<h2>📷 Plant Disease Detection</h2>
+
+<p>Upload a crop leaf image for analysis.</p>
+
+</div>
+
+<div class="form-box">
+
+<input type="file"
+id="leafImage"
+accept="image/*"
+onchange="previewImage()">
+
+<br><br>
+
+<img id="imagePreview"
+style="max-width:300px;display:none;border-radius:10px;">
+
+<br><br>
+
+<button class="green-btn"
+onclick="detectDisease()">
+
+🔍 Analyze Leaf
+
+</button>
+
+<div class="result" id="diseaseResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- IRRIGATION -->
+<section id="irrigation">
+
+<div class="section-title">
+
+<h2>💧 Smart Irrigation</h2>
+
+<p>Calculate irrigation requirements.</p>
+
+</div>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Soil Moisture %</label>
+
+<input type="number"
+id="moisture"
+placeholder="Example: 25">
+
+</div>
+
+<div class="form-group">
+
+<label>Temperature °C</label>
+
+<input type="number"
+id="irrigationTemp"
+placeholder="Example: 32">
+
+</div>
+
+<div class="form-group">
+
+<label>Humidity %</label>
+
+<input type="number"
+id="irrigationHumidity"
+placeholder="Example: 50">
+
+</div>
+
+<div class="form-group">
+
+<label>Rainfall Forecast mm</label>
+
+<input type="number"
+id="forecastRain"
+placeholder="Example: 2">
+
+</div>
+
+</div>
+
+<br>
+
+<button class="green-btn"
+onclick="checkIrrigation()">
+
+💧 Check Irrigation
+
+</button>
+
+<div class="result"
+id="irrigationResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- WEATHER -->
+<section id="weather">
+
+<div class="section-title">
+
+<h2>🌦️ Weather Monitoring</h2>
+
+<p>Current demo weather dashboard.</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🌡️</div>
+<h3>Temperature</h3>
+<p id="weatherTemp">31°C</p>
+</div>
+
+<div class="card">
+<div class="icon">💧</div>
+<h3>Humidity</h3>
+<p>68%</p>
+</div>
+
+<div class="card">
+<div class="icon">🌧️</div>
+<h3>Rainfall</h3>
+<p>12 mm</p>
+</div>
+
+<div class="card">
+<div class="icon">☀️</div>
+<h3>Condition</h3>
+<p>Partly Cloudy</p>
+</div>
+
+</div>
+
+<div class="alert">
+
+⚠️ <strong>Weather Alert:</strong>
+Rain is expected. Check irrigation before watering the crop.
+
+</div>
+
+</section>
+
+
+<!-- YIELD -->
+<section id="yield">
+
+<div class="section-title">
+
+<h2>📈 Crop Yield Prediction</h2>
+
+<p>Estimate crop production.</p>
+
+</div>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Crop</label>
+
+<select id="yieldCrop">
+
+<option>Rice</option>
+<option>Wheat</option>
+<option>Maize</option>
+<option>Cotton</option>
+<option>Tomato</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Farm Area (acres)</label>
+
+<input type="number"
+id="yieldArea"
+placeholder="Example: 2">
+
+</div>
+
+<div class="form-group">
+
+<label>Average Rainfall (mm)</label>
+
+<input type="number"
+id="yieldRain"
+placeholder="Example: 800">
+
+</div>
+
+<div class="form-group">
+
+<label>Soil Health (%)</label>
+
+<input type="number"
+id="soilHealth"
+placeholder="Example: 80">
+
+</div>
+
+</div>
+
+<br>
+
+<button class="green-btn"
+onclick="predictYield()">
+
+📈 Predict Yield
+
+</button>
+
+<div class="result"
+id="yieldResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- MARKET -->
+<section id="market">
+
+<div class="section-title">
+
+<h2>💰 Market Information</h2>
+
+<p>Demo crop market information.</p>
+
+</div>
+
+<div style="overflow-x:auto;">
+
+<table>
+
+<tr>
+<th>Crop</th>
+<th>Price / Quintal</th>
+<th>Trend</th>
+<th>Recommendation</th>
+</tr>
+
+<tr>
+<td>Rice</td>
+<td>₹2,300</td>
+<td>📈 Rising</td>
+<td>Good</td>
+</tr>
+
+<tr>
+<td>Wheat</td>
+<td>₹2,450</td>
+<td>➡️ Stable</td>
+<td>Good</td>
+</tr>
+
+<tr>
+<td>Cotton</td>
+<td>₹7,200</td>
+<td>📈 Rising</td>
+<td>Very Good</td>
+</tr>
+
+<tr>
+<td>Tomato</td>
+<td>₹2,800</td>
+<td>📉 Falling</td>
+<td>Wait</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- FARM REPORT -->
+<section>
+
+<div class="section-title">
+
+<h2>📋 Farm Report</h2>
+
+<p>Generate a quick farm analysis.</p>
+
+</div>
+
+<div class="form-box">
+
+<button class="green-btn"
+onclick="generateReport()">
+
+📋 Generate Farm Report
+
+</button>
+
+<div class="result" id="reportResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- CHATBOT -->
+<section id="chatbot">
+
+<div class="section-title">
+
+<h2>🤖 AI Farmer Assistant</h2>
+
+<p>Ask questions about farming.</p>
+
+</div>
+
+<div class="chat-box">
+
+<div class="chat-header">
+
+🤖 AgriVision Farmer Assistant
+
+</div>
+
+<div class="chat-messages"
+id="chatMessages">
+
+<div class="message bot">
+
+Hello! 👋 I am your AgriVision farming assistant.
+Ask me about crops, irrigation, diseases or farming.
+
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input type="text"
+id="chatInput"
+placeholder="Ask a farming question..."
+onkeypress="if(event.key==='Enter')sendMessage()">
+
+<button class="green-btn"
+onclick="sendMessage()">
+
+Send
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<h3>🌱 AgriVision AI</h3>
+
+<p>
+Smart Agriculture & Crop Decision Support System
+</p>
+
+<p>
+© 2026 AgriVision AI | Final Year Project
+</p>
+
+</footer>
+
+
+<script>
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+/* FARMER */
+
+function saveFarmer(){
+
+let name=document.getElementById("farmerName").value;
+let location=document.getElementById("location").value;
+let area=document.getElementById("farmArea").value;
+let soil=document.getElementById("soilType").value;
+
+if(name==="" || location==="" || area==="" || soil===""){
+
+alert("Please enter all farmer details.");
+
+return;
+
+}
+
+localStorage.setItem("farmerName",name);
+localStorage.setItem("location",location);
+localStorage.setItem("farmArea",area);
+localStorage.setItem("soilType",soil);
+
+let result=document.getElementById("farmerResult");
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>✅ Farmer Details Saved</h3>
+
+<p><strong>Name:</strong> ${name}</p>
+
+<p><strong>Location:</strong> ${location}</p>
+
+<p><strong>Farm Area:</strong> ${area} acres</p>
+
+<p><strong>Soil:</strong> ${soil}</p>
+
+`;
+
+}
+
+
+/* CROP RECOMMENDATION */
+
+function recommendCrop(){
+
+let N=Number(document.getElementById("nitrogen").value);
+let P=Number(document.getElementById("phosphorus").value);
+let K=Number(document.getElementById("potassium").value);
+let temp=Number(document.getElementById("temperature").value);
+let humidity=Number(document.getElementById("humidity").value);
+let rain=Number(document.getElementById("rainfall").value);
+let ph=Number(document.getElementById("ph").value);
+
+if(!N || !P || !K || !temp || !humidity || !rain || !ph){
+
+alert("Please enter all crop parameters.");
+
+return;
+
+}
+
+let crop="Rice";
+let reason="Good rainfall and suitable environmental conditions.";
+
+if(rain<60 && temp>25){
+
+crop="Millet";
+reason="Lower rainfall conditions are more suitable for millet.";
+
+}
+
+else if(temp>30 && rain>100){
+
+crop="Cotton";
+reason="Warm temperature and rainfall are suitable for cotton.";
+
+}
+
+else if(temp>=18 && temp<=25 && rain>80){
+
+crop="Wheat";
+reason="Moderate temperature and rainfall support wheat.";
+
+}
+
+else if(humidity>75 && rain>120){
+
+crop="Rice";
+reason="High humidity and rainfall are suitable for rice.";
+
+}
+
+let score=Math.floor(75+Math.random()*21);
+
+let result=document.getElementById("cropResult");
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>🌱 Recommended Crop: ${crop}</h3>
+
+<p><strong>Suitability Score:</strong> ${score}%</p>
+
+<p><strong>Reason:</strong> ${reason}</p>
+
+<p>🌿 Consider checking local agricultural recommendations before planting.</p>
+
+`;
+
+}
+
+
+/* IMAGE PREVIEW */
+
+function previewImage(){
+
+let file=document.getElementById("leafImage").files[0];
+
+if(!file) return;
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+let img=document.getElementById("imagePreview");
+
+img.src=e.target.result;
+
+img.style.display="block";
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+
+/* DISEASE */
+
+function detectDisease(){
+
+let file=document.getElementById("leafImage").files[0];
+
+if(!file){
+
+alert("Please upload a leaf image.");
+
+return;
+
+}
+
+let diseases=[
+
+{
+name:"Possible Leaf Spot",
+risk:"Medium",
+action:"Remove severely affected leaves and maintain proper field hygiene."
+},
+
+{
+name:"Possible Healthy Leaf",
+risk:"Low",
+action:"Continue regular monitoring and proper irrigation."
+},
+
+{
+name:"Possible Fungal Infection",
+risk:"Medium",
+action:"Improve air circulation and monitor the crop carefully."
+}
+
+];
+
+let d=diseases[Math.floor(Math.random()*diseases.length)];
+
+let result=document.getElementById("diseaseResult");
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>📷 Disease Analysis</h3>
+
+<p><strong>Result:</strong> ${d.name}</p>
+
+<p><strong>Risk Level:</strong> ${d.risk}</p>
+
+<p><strong>Suggested Action:</strong> ${d.action}</p>
+
+<p>⚠️ This demo does not replace professional agricultural diagnosis.</p>
+
+`;
+
+}
+
+
+/* IRRIGATION */
+
+function checkIrrigation(){
+
+let moisture=Number(document.getElementById("moisture").value);
+let temp=Number(document.getElementById("irrigationTemp").value);
+let humidity=Number(document.getElementById("irrigationHumidity").value);
+let rain=Number(document.getElementById("forecastRain").value);
+
+if(!moisture || !temp || !humidity){
+
+alert("Please enter irrigation data.");
+
+return;
+
+}
+
+let result=document.getElementById("irrigationResult");
+
+result.style.display="block";
+
+if(moisture<30 && rain<10){
+
+result.innerHTML=`
+
+<h3>💧 Irrigation Required</h3>
+
+<p>Soil moisture is low.</p>
+
+<p><strong>Recommendation:</strong>
+Irrigate the field and monitor soil moisture.</p>
+
+`;
+
+}
+
+else if(rain>=10){
+
+result.innerHTML=`
+
+<h3>🌧️ Irrigation Not Recommended</h3>
+
+<p>Rainfall is expected.</p>
+
+<p>Consider delaying irrigation.</p>
+
+`;
+
+}
+
+else{
+
+result.innerHTML=`
+
+<h3>✅ Soil Moisture is Acceptable</h3>
+
+<p>No immediate irrigation is required.</p>
+
+`;
+
+}
+
+}
+
+
+/* YIELD */
+
+function predictYield(){
+
+let crop=document.getElementById("yieldCrop").value;
+let area=Number(document.getElementById("yieldArea").value);
+let rain=Number(document.getElementById("yieldRain").value);
+let health=Number(document.getElementById("soilHealth").value);
+
+if(!area || !rain || !health){
+
+alert("Please enter all yield parameters.");
+
+return;
+
+}
+
+let baseYield={
+
+Rice:2.5,
+Wheat:2.2,
+Maize:2.8,
+Cotton:1.8,
+Tomato:10
+
+};
+
+let yieldPerAcre=baseYield[crop];
+
+let adjustment=health/100;
+
+let estimated=area*yieldPerAcre*adjustment;
+
+let result=document.getElementById("yieldResult");
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>📈 Yield Prediction</h3>
+
+<p><strong>Crop:</strong> ${crop}</p>
+
+<p><strong>Farm Area:</strong> ${area} acres</p>
+
+<p><strong>Estimated Yield:</strong>
+${estimated.toFixed(2)} tonnes</p>
+
+<p>📊 This is a demonstration estimate. A real project should use a trained ML model and historical agricultural data.</p>
+
+`;
+
+}
+
+
+/* REPORT */
+
+function generateReport(){
+
+let name=localStorage.getItem("farmerName") || "Farmer";
+let location=localStorage.getItem("location") || "Not provided";
+let area=localStorage.getItem("farmArea") || "Not provided";
+let soil=localStorage.getItem("soilType") || "Not provided";
+
+let result=document.getElementById("reportResult");
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>📋 Farm Analysis Report</h3>
+
+<p><strong>Farmer:</strong> ${name}</p>
+
+<p><strong>Location:</strong> ${location}</p>
+
+<p><strong>Farm Area:</strong> ${area} acres</p>
+
+<p><strong>Soil Type:</strong> ${soil}</p>
+
+<hr><br>
+
+<p>🌱 Crop Suitability: <strong>Good</strong></p>
+
+<p>💧 Water Efficiency: <strong>78%</strong></p>
+
+<p>🌿 Crop Health: <strong>91%</strong></p>
+
+<p>🏆 Farm Intelligence Score: <strong>87/100</strong></p>
+
+<br>
+
+<p>💡 Recommendation:
+Continue monitoring soil moisture, weather conditions and crop health.</p>
+
+`;
+
+}
+
+
+/* CHATBOT */
+
+function sendMessage(){
+
+let input=document.getElementById("chatInput");
+
+let message=input.value.trim();
+
+if(message==="") return;
+
+let chat=document.getElementById("chatMessages");
+
+chat.innerHTML+=`
+
+<div class="message user">
+
+${message}
+
+</div>
+
+`;
+
+let lower=message.toLowerCase();
+
+let reply="";
+
+if(lower.includes("crop")){
+
+reply="🌱 Crop selection depends on soil nutrients, pH, rainfall, temperature and humidity. Use the Crop Recommendation module.";
+
+}
+
+else if(lower.includes("water") || lower.includes("irrigation")){
+
+reply="💧 Check soil moisture and rainfall forecast before irrigation. Low moisture with no expected rain usually indicates irrigation may be required.";
+
+}
+
+else if(lower.includes("disease") || lower.includes("leaf")){
+
+reply="📷 You can upload a crop leaf image in the Disease Detection section for this project's demo analysis.";
+
+}
+
+else if(lower.includes("weather")){
+
+reply="🌦️ Check the Weather Monitoring section for temperature, humidity, rainfall and alerts.";
+
+}
+
+else if(lower.includes("yield")){
+
+reply="📈 Use the Yield Prediction module by entering crop, farm area, rainfall and soil health.";
+
+}
+
+else if(lower.includes("hello") || lower.includes("hi")){
+
+reply="Hello farmer! 👨‍🌾 How can I help you today?";
+
+}
+
+else{
+
+reply="🤖 I can help with crop selection, irrigation, crop diseases, weather and yield prediction. Try asking about one of these.";
+
+}
+
+setTimeout(function(){
+
+chat.innerHTML+=`
+
+<div class="message bot">
+
+${reply}
+
+</div>
+
+`;
+
+chat.scrollTop=chat.scrollHeight;
+
+},500);
+
+input.value="";
+
+}
+
+
+/* LOAD FARMER DATA */
+
+window.onload=function(){
+
+let name=localStorage.getItem("farmerName");
+
+if(name){
+
+document.getElementById("farmerName").value=name;
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
